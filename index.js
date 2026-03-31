@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://music-app-seven-peach.vercel.app'
+  origin: ['http://localhost:5173', 'https://music-app-seven-peach.vercel.app']
 }));
 
 const port = 2000;
