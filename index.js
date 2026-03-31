@@ -1,9 +1,19 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const allowedOrigins = [
+  "http://localhost:5174",
+  "https://music-app-seven-peach.vercel.app/"
+];
+
 app.use(cors({
-  origin: ['http://localhost:5173',
-    'https://music-app-seven-peach.vercel.app/']
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
 }));
 
 const port = 2000;
