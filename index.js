@@ -1,32 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
-const allowedOrigins = [
-  "http://localhost:5174",
-  "https://music-app-seven-peach.vercel.app" 
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-
-    if (
-      allowedOrigins.includes(origin) ||
-      /\.vercel\.app$/.test(origin)
-    ) {
-      callback(null, true);
-    } else {
-      console.log("Blocked origin:", origin); 
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
+  origin: 'https://music-app-seven-peach.vercel.app'
 }));
-
-
-app.options("*", cors());
 
 const port = 2000;
 
